@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>📺 Live TV Hub</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    header {
+      background-color: #007bff;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .video-container {
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .video-container iframe {
+      width: 100%;
+      max-width: 800px;
+      height: 450px;
+      border: none;
+    }
+
+    .channels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .channel-card {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #007bff;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .channel-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 600px) {
+      .video-container iframe {
+        height: 200px;
+      }
+
+      .channels-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+
+      .channel-card {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>📺 Live TV Hub</header>
+
+  <div class="video-container">
+    <iframe id="video-player" src="https://www.youtube.com/embed/O3DPVlynUM0" allowfullscreen></iframe>
+  </div>
+
+  <div class="channels-grid" id="channels-grid"></div>
+
+  <script>
+    const channels = [
+      { name: "Geo News", embedUrl: "https://www.youtube.com/embed/O3DPVlynUM0" },
+      { name: "ARY News", embedUrl: "https://www.youtube.com/embed/RqUZ2Fv9l8w" },
+      { name: "Samma News", embedUrl: "https://www.youtube.com/embed/jTumncB0WIU" },
+      { name: "Dunya News", embedUrl: "https://www.youtube.com/embed/GlHSFtTFfJE" },
+      { name: "ABP News", embedUrl: "https://www.youtube.com/embed/nyd-xznCpJc" },
+      { name: "WION", embedUrl: "https://www.youtube.com/embed/gadjsB5BkK4" },
+      { name: "TV9 Telugu", embedUrl: "https://www.youtube.com/embed/II_m28Bm-iM" },
+      { name: "Al Jazeera", embedUrl: "https://www.youtube.com/embed/gCNeDWCI0vo" },
+      { name: "Aaj News", embedUrl: "https://www.youtube.com/embed/EwKSau4Vsqc" },
+      { name: "HUM News", embedUrl: "https://www.youtube.com/embed/BZCeZUBTbvo" },
+      { name: "Express News", embedUrl: "https://www.youtube.com/embed/DWKo1rSR1xM" },
+      { name: "Bol News", embedUrl: "https://www.youtube.com/embed/YirtbHvyaxY" }
+    ];
+
+    const channelsGrid = document.getElementById('channels-grid');
+    const videoPlayer = document.getElementById('video-player');
+
+    channels.forEach(channel => {
+      const card = document.createElement('div');
+      card.className = 'channel-card';
+      card.textContent = channel.name;
+      card.addEventListener('click', () => {
+        videoPlayer.src = channel.embedUrl;
+      });
+      channelsGrid.appendChild(card);
+    });
+  </script>
+</body>
+</html>
